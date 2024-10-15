@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3fv8admictf0"]
+
+[ext_resource type="Script" path="res://BlockBox.gd" id="1_4cpdj"]
+
+[node name="BlockBox" type="Area2D"]
+script = ExtResource("1_4cpdj")

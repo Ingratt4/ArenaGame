@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4v7ouaydj4e2"]
+
+[ext_resource type="Script" path="res://Scenes/cache.gd" id="1_62knp"]
+[ext_resource type="Texture2D" uid="uid://dd00ltkqls482" path="res://Tilemap Assets/TX Props.png" id="1_n2c08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubyj2"]
+size = Vector2(121.375, 90.375)
+
+[node name="Cache" type="Area2D"]
+script = ExtResource("1_62knp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.75, -9.5)
+scale = Vector2(0.554795, 0.546875)
+texture = ExtResource("1_n2c08")
+hframes = 7
+vframes = 8
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ubyj2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

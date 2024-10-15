@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://chqai31xtqgf1"]
+
+[ext_resource type="Script" path="res://Scripts/SlimeSpawner.gd" id="1_foxf4"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_foxf4")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

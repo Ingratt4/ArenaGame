@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://b582c3xff5v34"]
+
+[ext_resource type="Texture2D" uid="uid://bihg01sl3x04m" path="res://Enemy Assets/Slime.png" id="1_eakqx"]
+[ext_resource type="Script" path="res://Scripts/Slime.gd" id="1_o8q2l"]
+[ext_resource type="PackedScene" uid="uid://l3jrk1p1oqvf" path="res://Scenes/Components/health_component.tscn" id="2_tydhg"]
+[ext_resource type="PackedScene" uid="uid://bp26ojm1wy0f5" path="res://Scenes/Components/hitbox_component.tscn" id="3_uufss"]
+[ext_resource type="PackedScene" uid="uid://csflb7k8n3yib" path="res://Scenes/Components/player_detection.tscn" id="4_rww8o"]
+[ext_resource type="Script" path="res://Scripts/ProgressBar.gd" id="4_ujc65"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wia01"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6on4l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3aka"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_spn36"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nilke"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_84qoo"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_q6sfm"]
+resource_name = "move"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xcp3"]
+_data = {
+"RESET": SubResource("Animation_spn36"),
+"die": SubResource("Animation_nilke"),
+"idle": SubResource("Animation_84qoo"),
+"move": SubResource("Animation_q6sfm")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0syah"]
+radius = 101.005
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uljac"]
+radius = 5.0
+
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_o8q2l")
+speed = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -2)
+texture = ExtResource("1_eakqx")
+hframes = 6
+vframes = 3
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_tydhg")]
+max_health = 100
+
+[node name="HealthLabel" type="Label" parent="HealthComponent"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthComponent" node_paths=PackedStringArray("health_component")]
+offset_left = -37.0
+offset_top = -20.0
+offset_right = 37.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_wia01")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_6on4l")
+fill_mode = 1
+show_percentage = false
+script = ExtResource("4_ujc65")
+health_component = NodePath("..")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["Enemy"] instance=ExtResource("3_uufss")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_v3aka")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3xcp3")
+}
+
+[node name="PlayerDetection" parent="." instance=ExtResource("4_rww8o")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_0syah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uljac")
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

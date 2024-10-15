@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://c2hwhilgu8pmy"]
+
+[ext_resource type="Script" path="res://Resources/Weapon.gd" id="1_0mt38"]
+[ext_resource type="Texture2D" uid="uid://dw5c1xpvxgeku" path="res://Player Assets/spear_sprite_646.png" id="2_bdyvq"]
+
+[resource]
+script = ExtResource("1_0mt38")
+texture = ExtResource("2_bdyvq")
+hitbox_up_size = Vector2(5, 5)
+hitbox_down_size = Vector2(5, 5)
+hitbox_left_size = Vector2(5, 5)
+hitbox_right_size = Vector2(5, 5)
+hitbox_up_offset = Vector2(0, -15)
+hitbox_down_offset = Vector2(0, 15)
+hitbox_left_offset = Vector2(-15, 0)
+hitbox_right_offset = Vector2(15, 0)
+damage = 100.0
+hitbox_delay = 0.4
+hframes = 6
+vframes = 4
+item_name = "Spear"

@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqlan4uqygqya"]
+
+[ext_resource type="FontFile" uid="uid://ds1mbyltvgkfm" path="res://UI Assets/vinque rg.otf" id="1_sf5l0"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 46.0
+color = Color(0.151395, 0, 0.00242222, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+process_mode = 3
+layout_mode = 0
+offset_left = 4.0
+offset_top = 15.0
+offset_right = 194.0
+offset_bottom = 46.0
+scale = Vector2(0.5, 0.5)
+
+[node name="NextRound" type="Button" parent="ColorRect/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sf5l0")
+text = "Next round"
+
+[node name="Button2" type="Button" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sf5l0")
+text = "Boss"
+
+[node name="Button3" type="Button" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sf5l0")
+text = "Quit"

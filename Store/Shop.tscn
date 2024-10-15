@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhcvsbhb10o1g"]
+
+[ext_resource type="Script" path="res://Store/ShopUI.gd" id="1_8imcf"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_tnu2c"]
+
+[node name="ShopUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8imcf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0301227, 0.170297, 0.208468, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Upgrade25" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Purchase Spear ( 25)
+"
+icon = SubResource("ImageTexture_tnu2c")
+
+[node name="Upgrade50" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Upgrade = 50"
+
+[node name="Button3" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Click me"
+
+[node name="Button4" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Click me"
+
+[node name="Button5" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Click me"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Upgrade25" to="." method="_on_upgrade_25_pressed"]

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://c6h5ya7mc85dv"]
+
+[ext_resource type="Script" path="res://Resources/Weapon.gd" id="1_snhvd"]
+[ext_resource type="Texture2D" uid="uid://bdn722ph2uy7r" path="res://Player Assets/Player.png" id="2_m0dby"]
+
+[resource]
+script = ExtResource("1_snhvd")
+texture = ExtResource("2_m0dby")
+hitbox_up_size = Vector2(5, 20)
+hitbox_down_size = Vector2(5, 20)
+hitbox_left_size = Vector2(5, 20)
+hitbox_right_size = Vector2(5, 20)
+hitbox_up_offset = Vector2(0, -12)
+hitbox_down_offset = Vector2(0, 12)
+hitbox_left_offset = Vector2(-12, 0)
+hitbox_right_offset = Vector2(12, 0)
+damage = 25.0
+hitbox_delay = 0.0
+hframes = 6
+vframes = 10
+item_name = "Sword"

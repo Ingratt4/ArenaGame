@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://na0mbrxm8agk"]
+
+[ext_resource type="Script" path="res://Store/Store.gd" id="1_0xyhl"]
+[ext_resource type="Texture2D" uid="uid://dd00ltkqls482" path="res://Tilemap Assets/TX Props.png" id="2_63dt2"]
+[ext_resource type="PackedScene" uid="uid://dhcvsbhb10o1g" path="res://Store/Shop.tscn" id="3_pvwil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o48tt"]
+size = Vector2(142, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj7ki"]
+size = Vector2(32, 26)
+
+[node name="Store" type="StaticBody2D"]
+script = ExtResource("1_0xyhl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_63dt2")
+hframes = 16
+vframes = 5
+frame = 14
+
+[node name="ShopArea" type="Area2D" parent="."]
+
+[node name="ShopBox" type="CollisionShape2D" parent="ShopArea"]
+position = Vector2(-1, 12)
+shape = SubResource("RectangleShape2D_o48tt")
+
+[node name="ShopUI" parent="." instance=ExtResource("3_pvwil")]
+visible = false
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_yj7ki")
+
+[connection signal="body_entered" from="ShopArea" to="." method="_on_shop_area_body_entered"]
+[connection signal="body_exited" from="ShopArea" to="." method="_on_shop_area_body_exited"]
